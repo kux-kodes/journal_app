@@ -23,6 +23,6 @@ object DataConverters{
 
 @TypeConverters(DateConverters::class){
     abstract class NoteDatabase: RoomDatabase(){
-        abstraction fun dao(): NoteDao
+        abstraction fun dao(): NoteDAO
     }
 }
