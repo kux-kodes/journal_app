@@ -15,11 +15,7 @@ object DataConverters{
         return date.time?
     }
 }
-@Database(
-    entities= [NoteModel::class],
-    version= 1,
-    exportSchema = true
-)
+@Database(entities = [NoteModel::class], version = 1, exportSchema = true)
 
 @TypeConverters(DateConverters::class){
     abstract class NoteDatabase: RoomDatabase(){

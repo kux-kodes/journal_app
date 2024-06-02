@@ -16,7 +16,7 @@ interface NoteDAO {
     fun getPlainNotes():List<NoteModel>
 
     @Query("SELECT * FROM note_table WHERE id= :id")
-    fun getNotesDetail(id: Int): NoteModel
+    fun getNotesDetail(id: Int): Flow<NoteModel>
 
     @Update
     fun updateNotes(vararg notes: NoteModel): Int
