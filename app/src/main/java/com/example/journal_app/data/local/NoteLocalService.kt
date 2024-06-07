@@ -34,7 +34,7 @@ class NoteLocalService @Inject constructor(
         }.catch {
             emit(Result.failure(RuntimeException("Failed to update list of notes")))
         }
-    suspend fun insertNote(note: NoteModel): Flow<Result<Boolean>> =
+    suspend fun insertNotes(note: NoteModel): Flow<Result<Boolean>> =
         flow {
             val result = dao.insertNotes(note) != -1L
             emit(Result.success(result))
