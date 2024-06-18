@@ -14,7 +14,7 @@ interface NotePageBaseVM{
     val isSearching: MutableState<Boolean>
     val searchedTitleText: MutableState<String>
     val isMarking: MutableState<Boolean>
-    val markedNoteLIst: SnapshotStateList<NoteModel>
+    val markedNoteList: SnapshotStateList<NoteModel>
     fun markAllNote(notes: List<NoteModel>)
     fun unMarkNotes()
     fun addMarkedNoteToList(notes: NoteModel)

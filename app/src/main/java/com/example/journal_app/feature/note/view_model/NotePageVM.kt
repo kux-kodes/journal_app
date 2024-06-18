@@ -1,5 +1,7 @@
 package com.example.journal_app.feature.note.view_model
 
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -37,4 +39,26 @@ abstract class NotePageVM @Inject constructor(
             }
         }
     }
+    override val isSearching= mutableStateOf(false)
+    override val searchedTitleText= mutableStateOf("")
+    override val isMarking= mutableStateOf(false)
+    override val markedNoteList= mutableStateListOf<NoteModel>()
+    override fun markAllNote(notes: List<NoteModel>){
+        markedNoteList.addAll(notes.minus((markedNoteList).toSet()))
+    }
+    override fun unMarkNotes() {
+        markedNoteList.clear()
+    }
+    override fun addMarkedNoteToList(notes: NoteModel){
+        if(notes in markedNoteList){
+            markedNoteList.remove(notes)
+        } else{
+            markedNoteList.add(notes)
+        }
+    }
+    override suspend fun deleteNoteList(vararg notes: NoteModel): Result<Boolean>=
+    withContext(Dispatcher.IO){
+        loader.postValue(true)
+    }
+
 }
