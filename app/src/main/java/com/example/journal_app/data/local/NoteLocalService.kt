@@ -9,8 +9,8 @@ import javax.inject.Inject
 class NoteLocalService @Inject constructor(
     private val dao: NoteDAO
 ) {
-    suspend fun getNotesList(): Flow<Result<List<NoteModel>>> =
-        dao.getNotes().map { Result.success(it) }.catch {
+    suspend fun getNotesList(sortBy: String, order: String): Flow<Result<List<NoteModel>>> =
+        dao.getNotes(sortBy, order).map { Result.success(it) }.catch {
             emit(Result.failure(RuntimeException("Failure to get list of notes")))
         }
 
