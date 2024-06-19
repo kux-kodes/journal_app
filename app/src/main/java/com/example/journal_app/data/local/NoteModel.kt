@@ -11,10 +11,10 @@ import java.util.Date
 @Entity(tableName = "note_table")
 data class NoteModel(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo(name= "tile") val title: String,
+    @ColumnInfo(name= "title") val title: String,
     @ColumnInfo(name= "note") val note:String,
-    @ColumnInfo(name= "created_at : ") var createdAt: Date= Date(System.currentTimeMillis()),
-    @ColumnInfo(name= "updated_at : ") var updatedAt: Date= Date(System.currentTimeMillis())
+    @ColumnInfo(name= "created_at") var createdAt: Date= Date(System.currentTimeMillis()),
+    @ColumnInfo(name= "updated_at") var updatedAt: Date= Date(System.currentTimeMillis())
 ) : Parcelable {
     constructor(title: String, note: String) : this(0, title, note)
 }

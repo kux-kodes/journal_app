@@ -46,7 +46,4 @@ interface NoteDAO {
         })
     }
 
-//TODO: fix NoteDAO error
-    //TODO: check and compare with the NoteModel.kt class
-
 }
