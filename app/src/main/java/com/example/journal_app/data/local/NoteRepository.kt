@@ -48,4 +48,3 @@ class NoteRepository @Inject constructor(
             }
         }
 }
-// Todo: finish the viewModel

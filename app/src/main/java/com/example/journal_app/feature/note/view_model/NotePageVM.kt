@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
+import com.example.journal_app.commons.Constants
 import com.example.journal_app.data.local.NoteModel
 import com.example.journal_app.data.local.NoteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,8 +24,8 @@ abstract class NotePageVM @Inject constructor(
 ): ViewModel(), NotePageBaseVM {
     override val loader= MutableLiveData<Boolean>()
     override val sortAndOrderData: MutableLiveData<Pair<String, String>> =
-        MutableLiveData(Pair(createdAt,sortBy ))
-    //TODO: find a way to create a "created at" feature as well as make the notes appear descending
+        MutableLiveData(Pair(Constants.CREATED_AT,Constants.DESCENDING )
+        )
     override fun sortAndOrder(sortBy: String, orderBy: String) {
         sortAndOrderData.value= Pair(sortBy, orderBy)
     }
