@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Journal_app</string>
+    <string name="title"> JournalApp</string>
+
+    <!-- textField description -->
+    <string name="title_textField">title textField</string>
+    <string name= "body_textField">body textField</string>
+
+    <!-- textField placeholder -->
+    <string name="title_textField_input">Insert title</string>
+    <string name="body_textField_input">Insert note</string>
+    <string name="search_textField">Input title here</string>
+
+    <!-- Label text -->
+    <string name= "selected_text">Selected</string>
+    <string name="NoteDetail">Note Detail</string>
+
+
 </resources>
