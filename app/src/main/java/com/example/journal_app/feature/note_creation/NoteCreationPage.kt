@@ -55,18 +55,18 @@ fun NoteCreationPage(navHostController: NavHostController,
             }
         }
     }
+    val appBarState = rememberTopAppBarState()
+//TODO: Resolve top bar error and explain why it happened
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(appBarState)
+    val remerberedScrollBehavior = remember {scrollBehavior}
+    val view = LocalView.current
+    val keyboardHeight = remember {mutableStateOf(0.dp)}
+    val viewTreeObserver = remember {view.viewTreeObserver}
+    val onGlobalLayoutListener = remember {
+        val rect = android.graphics.Rect().apply {
+            view.getWindowVisibleDisplayFrame(this)
+        }
+//TODO: fix errors
+    }
 }
 
-val appBarState = rememberTopAppBarState()
-//TODO: Resolve top bar error and explain why it happened
-val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(appBarState)
-val remerberedScrollBehavior = remember {scrollBehavior}
-val view = LocalView.current
-val keyboardHeight = remember {mutableStateOf(0.dp)}
-val viewTreeObserver = remember {viewTreeObserver}
-val onGlobalLayoutListener = remember {
-    val rect = android.graphics.Rect().apply {
-        view.getWindowVisibleDisplayFrame(this)
-    }
-//TODO: fix errors
-}
