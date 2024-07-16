@@ -45,5 +45,4 @@ interface NoteDAO {
             updatedAt = Date(System.currentTimeMillis())
         })
     }
-
 }
