@@ -13,7 +13,19 @@
 
     <!-- Label text -->
     <string name= "selected_text">Selected</string>
-    <string name="NoteDetail">Note Detail</string>
+    <string name="note_detail">Note Detail</string>
+    <string name="add_new_note">Add new note</string>
+    <string name="share_preview"> share preview</string>
+    <string name="loading">Loading</string>
+    <string name="sort_by">Sort By</string>
+    <string name="sort_title">Title</string>
+    <string name="sort_modified_date">Modified Date</string>
+    <string name="sort_created_date">Created Date</string>
+    <string name="order_by">Order By</string>
+    <string name="order_ascending">Ascending</string>
+    <string name="order_descending">Descending</string>
+
+
 
 
 </resources>
