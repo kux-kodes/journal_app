@@ -10,3 +10,4 @@ interface NoteCreationPageBaseVM {
     val descriptionText: MutableState<String>
     suspend fun addNote(note: NoteModel): Result<Boolean>
 }
+//TODO: why did we use interface instead of a class?
