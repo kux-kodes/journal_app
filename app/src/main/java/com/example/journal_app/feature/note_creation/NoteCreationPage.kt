@@ -41,6 +41,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.journal_app.R
+import com.example.journal_app.commons.TestTags
 import com.example.journal_app.components.dialog.TextDialog
 import com.example.journal_app.data.local.NoteModel
 import com.example.journal_app.feature.note_creation.components.NoteCreationAppBar
@@ -136,6 +137,7 @@ fun NoteCreationPage(
                 modifier = Modifier.semantics { testTag = "add-note-fab" },
                 //TODO: What is the purpose for modifier.semantics?
                 //TODO: What is the purpose for test tags?
+                //TODO: How the hell does scaffold work?
                 text = {
                     Text(
                         stringResource(R.string.save),
