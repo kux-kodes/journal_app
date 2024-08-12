@@ -15,6 +15,8 @@ navigationCompose = "2.6.0-rc01"
 room_version= "2.6.1"
 roomRuntime = "room_version"
 roomCommon = "2.6.1"
+runtimeLivedata = "1.6.8"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,8 +40,10 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidxroom= {id= "androidx.room", version.ref= "room_version"}
+

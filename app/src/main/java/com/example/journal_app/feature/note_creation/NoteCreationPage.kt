@@ -46,6 +46,7 @@ import com.example.journal_app.components.dialog.TextDialog
 import com.example.journal_app.data.local.NoteModel
 import com.example.journal_app.feature.note_creation.components.NoteCreationAppBar
 import com.example.journal_app.feature.note_creation.view_model.NoteCreationPageBaseVM
+import com.example.journal_app.feature.note_creation.view_model.NoteCreationPageMockVM
 import com.example.journal_app.feature.note_creation.view_model.NoteCreationPageVM
 import kotlinx.coroutines.launch
 
@@ -69,7 +70,6 @@ fun NoteCreationPage(
     fun addNote() {
         if (viewModel.titleText.value.isEmpty() || viewModel.descriptionText.value.isEmpty()) {
             requiredDialogState.value = true
-            //TODO: why are we setting the value to true?
         } else {
             scope.launch {
                 viewModel.addNote(
@@ -90,7 +90,6 @@ fun NoteCreationPage(
                             withDismissAction = true
                         )
                     }
-                //TODO: Explain the above code piece
             }
         }
     }
@@ -99,22 +98,17 @@ fun NoteCreationPage(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(appBarState)
     val rememberedScrollBehavior = remember { scrollBehavior }
     val view = LocalView.current
-    //TODO: What does this do?
     val keyboardHeight = remember { mutableStateOf(0.dp) }
     val viewTreeObserver = remember { view.viewTreeObserver }
-    //TODO: What's a tree observer? why is it relevant?
     val onGlobalLayoutListener = remember {
         ViewTreeObserver.OnGlobalLayoutListener {
             val rect = android.graphics.Rect().apply {
                 view.getWindowVisibleDisplayFrame(this)
             }
-            //TODO: What is Rect?
-            //TODO: What is a global layout listener? how is it relevant?
             val keyboardHeightNew = view.rootView.height - rect.bottom
             if (keyboardHeightNew.dp != keyboardHeight.value) {
                 keyboardHeight.value = keyboardHeightNew.dp
             }
-            //TODO: Explain how this piece of code works
         }
     }
     DisposableEffect(view) {
@@ -122,7 +116,6 @@ fun NoteCreationPage(
         onDispose {
             viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayoutListener)
         }
-        //TODO: Explain how this piece of code works
     }
     Scaffold(
         topBar = {
@@ -135,9 +128,6 @@ fun NoteCreationPage(
             ExtendedFloatingActionButton(
                 onClick = { addNote() },
                 modifier = Modifier.semantics { testTag = "add-note-fab" },
-                //TODO: What is the purpose for modifier.semantics?
-                //TODO: What is the purpose for test tags?
-                //TODO: How the hell does scaffold work?
                 text = {
                     Text(
                         stringResource(R.string.save),
@@ -146,7 +136,6 @@ fun NoteCreationPage(
                     )
                 },
                 icon = {},
-                //TODO: fill out the icon part..maybe- also why does it matter?
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.primary
 
@@ -159,7 +148,6 @@ fun NoteCreationPage(
                         .fillMaxWidth()
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
-                        //TODO: Why didn't we use rememberscrollbehaviour
                         .padding(bottom = keyboardHeight.value)
                 ) {
                     TextField(value = viewModel.titleText.value,
@@ -170,7 +158,6 @@ fun NoteCreationPage(
                             color = MaterialTheme.colorScheme.onSurface
                         ),
                         singleLine = false,
-                        //TODO: why is it false and what is it?
                         colors = TextFieldDefaults.colors(
                             disabledTextColor = MaterialTheme.colorScheme.surface,
                             focusedContainerColor = MaterialTheme.colorScheme.surface,
@@ -179,7 +166,6 @@ fun NoteCreationPage(
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                             disabledIndicatorColor = Color.Transparent,
-                            //TODO: What are the uses for these inputs
                         ),
                         modifier = Modifier
                             .fillMaxWidth()
@@ -217,7 +203,6 @@ fun NoteCreationPage(
         isOpened = requiredDialogState.value,
         onDismissCallback = { requiredDialogState.value = false },
         onConfirmCallback = { requiredDialogState.value = false })
-    //TODO: What is the purpose of this text dialog?
 
     TextDialog(
         title = stringResource(R.string.cancel_title),
@@ -228,7 +213,6 @@ fun NoteCreationPage(
             navHostController.popBackStack()
             cancelDialogState.value = false
         })
-    //TODO: What is the purpose of this text dialog?
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
@@ -236,6 +220,7 @@ fun NoteCreationPage(
 fun NoteCreationPreview(){
     NoteCreationPage(
         navHostController = rememberNavController(),
+        viewModel = NoteCreationPageMockVM()
 
     )
 }
