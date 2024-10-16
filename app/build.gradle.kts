@@ -2,8 +2,10 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.androidxroom)
-    kotlin("kapt")
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.compose.compiler)
+
 }
 
 android {
@@ -75,12 +77,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     // Compose Navigation
     implementation (libs.androidx.navigation.compose)
 
 // Hilt
     implementation (libs.hilt.android)
-    kapt (libs.dagger.hilt.android.compiler)
+    ksp(libs.dagger.hilt.android.compiler)
     implementation (libs.androidx.hilt.navigation.compose)
 }

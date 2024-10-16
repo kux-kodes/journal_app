@@ -1,20 +1,26 @@
 package com.example.journal_app.feature.note_details
 
+import android.view.ViewTreeObserver
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.journal_app.R
+import com.example.journal_app.components.NoteDetailAppBar
 import com.example.journal_app.feature.note_details.viewmodel.NoteDetailsBaseVM
 import com.example.journal_app.feature.note_details.viewmodel.NoteDetailsVM
 import kotlinx.coroutines.launch
@@ -122,6 +128,35 @@ fun NoteDetailsPage(navHostController: NavHostController,
     val rememberedScrollBehaviour = remember {
         scrollBehavior
     }
+    val view = LocalView.current
+    val keyboardHeight = remember{ mutableStateOf(0.dp) }
+    val viewTreeObserver = remember { view.viewTreeObserver }
+    val onGlobalLayoutListener = remember {
+        ViewTreeObserver.OnGlobalLayoutListener{
+            val rect = android.graphics.Rect().apply {
+                view.getWindowVisibleDisplayFrame(this)
+            }
+            val keyboardHeightNew = view.rootView.height - rect.bottom
+            if(keyboardHeightNew.dp != keyboardHeight.value){
+                keyboardHeight.value = keyboardHeightNew.dp
+            }
+        }
+    }
+    DisposableEffect(view){
+        viewTreeObserver.addOnGlobalLayoutListener(onGlobalLayoutListener)
+        onDispose {
+            viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayoutListener)
+        }
+    }
+    Scaffold(
+        topBar = {
+            NoteDetailAppBar()
+        }
+    ){}
+    }
+
+
+
     //TODO: Why do we have to use remember {scroll behaviour} and define scroll behaviour?
 
 }
