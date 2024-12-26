@@ -10,7 +10,7 @@ object DateConverters{
     fun fromTimeStamp(value:Long?):Date?{
         return if(value==null) null else Date(value)
     }
-    @TypeConverters
+    @TypeConverter
     fun dateToTimestamp (date:Date?):Long?{
         return date?.time
     }
@@ -18,6 +18,6 @@ object DateConverters{
 @Database(entities = [NoteModel::class], version = 1, exportSchema = true)
 
 @TypeConverters(DateConverters::class)
-    abstract class NoteDatabase: RoomDatabase(){
-        abstract fun dao(): NoteDAO
-    }
+abstract class NoteDatabase: RoomDatabase(){
+    abstract fun dao(): NoteDAO
+}
